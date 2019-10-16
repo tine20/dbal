@@ -919,7 +919,7 @@ class MySqlPlatform extends AbstractPlatform
         if ($index instanceof Index) {
             $indexName = $index->getQuotedName($this);
         } elseif (is_string($index)) {
-            $indexName = $index;
+            $indexName = (new Identifier($index))->getQuotedName($this);
         } else {
             throw new \InvalidArgumentException('MysqlPlatform::getDropIndexSQL() expects $index parameter to be string or \Doctrine\DBAL\Schema\Index.');
         }
