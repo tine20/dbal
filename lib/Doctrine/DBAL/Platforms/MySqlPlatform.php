@@ -641,10 +641,10 @@ class MySqlPlatform extends AbstractPlatform
                     if ($addIndex->isPrimary()) {
                         $indexClause = 'PRIMARY KEY';
                     } elseif ($addIndex->isUnique()) {
-                        $indexClause = 'UNIQUE INDEX ' . $addIndex->getName();
+                        $indexClause = 'UNIQUE INDEX ' . $addIndex->getQuotedName($this);
                     }
 
-                    $query = 'ALTER TABLE ' . $table . ' DROP INDEX ' . $remIndex->getName() . ', ';
+                    $query = 'ALTER TABLE ' . $table . ' DROP INDEX ' . $remIndex->getQuotedName($this) . ', ';
                     $query .= 'ADD ' . $indexClause;
                     $query .= ' (' . $this->getIndexFieldDeclarationListSQL($addIndex->getQuotedColumns($this)) . ')';
 
