@@ -32,4 +32,9 @@ final class MariaDb1027Platform extends MySqlPlatform
 
         $this->doctrineTypeMapping['json'] = Types::JSON;
     }
+
+    public function getDefaultValueDeclarationSQL($column)
+    {
+        return AbstractPlatform::getDefaultValueDeclarationSQL($column);
+    }
 }
